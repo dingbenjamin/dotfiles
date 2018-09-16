@@ -24,7 +24,7 @@ set_from_resource $bg i3wm.color2 #000000
 bindsym Print --release exec snip
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "rofi -combi-modi run,drun,ssh -show combi -modi combi,ssh -lines 3 -eh 2 -width 100 -padding 800 -opacity '85' -bw 0 -terminal urxvt"
+bindsym $mod+d exec "rofi -combi-modi ssh,drun,run -show combi -modi combi,ssh -lines 3 -eh 2 -width 100 -padding 800 -opacity '85' -bw 0 -terminal urxvt"
 
 # change focus
 bindsym $mod+h focus left
