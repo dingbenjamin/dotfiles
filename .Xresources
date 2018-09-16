@@ -36,3 +36,6 @@ URxvt*cursorUnderline: true
 ! Rofi
 rofi.opacity: 10
 rofi.font: Inconsolata 12
+rofi.ssh-client: ssh
+rofi.ssh-command: {terminal} -e {ssh-client} {host}
+rofi.run-shell-command: {terminal} -e {cmd}

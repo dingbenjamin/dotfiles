@@ -120,7 +120,7 @@ fi
 
 # bin
 export PATH="$PATH:~/bin"
-export PATH="$PATH:usr/local"
+export PATH="$PATH:/usr/local"
 
 # PATH
 export PATH="$PATH:/usr/local/anaconda3/bin"
@@ -146,6 +146,8 @@ alias src="cd ~/src"
 alias ll="ls -l"
 alias get="sudo apt-get install"
 alias unzipi="dtrx"
+alias python="python3"
+alias pip="pip3"
 
 alias gco="git checkout"
 alias gcl="git clone"
