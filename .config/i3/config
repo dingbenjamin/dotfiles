@@ -127,7 +127,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Borders
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 # Gaps
 gaps inner 15
@@ -173,8 +173,8 @@ mode "$mode_gaps_outer" {
 }
 
 # class                 border  backgr. text indicator child_border
-client.focused          $fg	$bg     $fg  $bg       $bg
-client.focused_inactive $fg	$bg     $fg  $bg       $bg
+client.focused          $fg	$bg     $fg  $bg       $8e3434
+client.focused_inactive $fg	$bg     $fg  $bg       $8e3434
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
