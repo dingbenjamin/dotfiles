@@ -174,7 +174,7 @@ mode "$mode_gaps_outer" {
 
 # class                 border  backgr. text indicator child_border
 client.focused          $fg	$bg     $fg  $bg       $8e3434
-client.focused_inactive $fg	$bg     $fg  $bg       $8e3434
+client.focused_inactive $fg	$bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg

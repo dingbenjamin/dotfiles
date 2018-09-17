@@ -148,6 +148,7 @@ alias get="sudo apt-get install"
 alias unzipi="dtrx"
 alias python="python3"
 alias pip="pip3"
+alias deals="w3m ozbargain.com.au | egrep -A 3 -m 20 ^\[[0-9]+\]"
 
 alias gco="git checkout"
 alias gcl="git clone"
