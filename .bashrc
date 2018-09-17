@@ -135,8 +135,8 @@ alias home="cd ~/"
 alias root="cd /"
 alias unzipi="dtrx"
 
-alias i3conf="nano ~/.config/i3/config"
-alias polyconf="nano ~/.config/polybar/config"
+alias i3conf="vim ~/.config/i3/config"
+alias polyconf="vim ~/.config/polybar/config"
 
 # Aliases
 alias home="cd /home/ben"
