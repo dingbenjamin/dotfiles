@@ -8,3 +8,4 @@ urxvtd -q -f &
 mopidy &
 launchbar &
 wal -i "/home/ben/Pictures/Wallpapers/z1y2zRe.jpg"
+xset r rate 400 25
