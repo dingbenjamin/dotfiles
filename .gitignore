@@ -1,0 +1,13 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!.config/
+!.bashrc
+!.vimrc
+!.xinitrc
+!.Xresources
+!.compton.conf
+!bin/
+!.ncmpcpp
