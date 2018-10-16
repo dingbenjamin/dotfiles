@@ -7,20 +7,39 @@ set shiftwidth=4
 set noexpandtab
 set shellcmdflag=-ic
 
-highlight ColorColumn ctermbg=darkgray
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
 
-"FILETYPE DETECTION
-augroup project
-    autocmd!
-    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-augroup END
+"PATHOGEN
+execute pathogen#infect()
+syntax enable
+filetype plugin indent on
 
-"SETTING PATH VARIABLE
-let &path.="src/include,/usr/include/AL,"
+"SOLARIZED COLORSCHEME
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
 
-"AUTOCOMPLETE
-"let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+"NERDTREE
+map <silent> <C-n> :NERDTreeFocus<CR>
+
+"CLANG-FORMAT
+map <silent> <C-l> :ClangFormat<CR>
+
+"YOUCOMPLETEME (DISABLED)
+let g:loaded_youcompleteme=1
+let g:ycm_max_diagnostics_to_display=0
 
 "BUILD SYSTEM
-nnoremap <c-b> :!build-orbit
-nnoremap <c-t> :!build-test
+nnoremap <C-b> :!build-orbit<CR>
+nnoremap <C-t> :!build-test<CR>
+
+set number relativenumber
+highlight clear LineNr
+highlight clear CursorLineNr
+highlight clear SignColumn
+highlight LineNr guibg=NONE
+highlight CursorLineNr guibg=NONE
