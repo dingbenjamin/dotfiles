@@ -1,11 +1,8 @@
-set exrc
-set secure
-
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
-set shellcmdflag=-ic
+set mouse=a
 
 noremap <Leader>y "*y
 noremap <Leader>p "*p
@@ -34,8 +31,10 @@ let g:loaded_youcompleteme=1
 let g:ycm_max_diagnostics_to_display=0
 
 "BUILD SYSTEM
-nnoremap <C-b> :!build-orbit<CR>
-nnoremap <C-t> :!build-test<CR>
+command Clean execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.workspace -ccs.configuration "zCoverity" -ccs.clean' 
+set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.workspace\ -ccs.configuration\ "zCoverity"
+map <C-b> :make<CR>
+autocmd QuickFixCmdPost * :copen
 
 set number relativenumber
 highlight clear LineNr
