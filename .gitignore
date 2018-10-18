@@ -12,6 +12,7 @@
 !.compton.conf
 !bin/
 !.ncmpcpp
+!.zshrc
 
 # But these files
 \.config/gtk-2\.0/
