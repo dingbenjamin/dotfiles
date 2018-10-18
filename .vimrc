@@ -20,8 +20,17 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ajh17/VimCompletesMe'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
+
+"LIGHTLINE
+set noshowmode
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow_Night',
+      \ }
+
 
 "SOLARIZED COLORSCHEME
 set background=dark
@@ -34,10 +43,6 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 
 "CLANG-FORMAT
 map <silent> <C-l> :ClangFormat<CR>
-
-"YOUCOMPLETEME (DISABLED)
-let g:loaded_youcompleteme=1
-let g:ycm_max_diagnostics_to_display=0
 
 "BUILD SYSTEM
 command Clean execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.workspace -ccs.configuration "zCoverity" -ccs.clean' 
