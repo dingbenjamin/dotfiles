@@ -4,6 +4,7 @@
 # But not these files...
 !.gitignore
 !.bashrc
+!.profile
 !.vimrc
 !.vim/autoload/*
 !.xinitrc
