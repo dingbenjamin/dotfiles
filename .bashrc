@@ -123,6 +123,13 @@ fi
    #exec zsh
 #fi
 
+set -o vi
+
 ### FZF ###
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+### EDITOR ###
+VISUAL=vim 
+export VISUAL EDITOR=vim
+export EDITOR
