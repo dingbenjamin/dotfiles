@@ -6,9 +6,7 @@
 !.config/
 !.bashrc
 !.vimrc
-!.vim/*
 !.vim/autoload/*
-!.vim/bundle/*
 !.xinitrc
 !.Xresources
 !.compton.conf

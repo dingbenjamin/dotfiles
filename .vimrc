@@ -9,10 +9,19 @@ noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
 
-"PATHOGEN
-execute pathogen#infect()
-syntax enable
-filetype plugin indent on
+"VIM-PLUG
+call plug#begin('~/.vim/plugged')
+
+Plug 'kien/ctrlp.vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'scrooloose/nerdtree'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ajh17/VimCompletesMe'
+
+call plug#end()
 
 "SOLARIZED COLORSCHEME
 set background=dark
@@ -21,7 +30,7 @@ let g:solarized_termtrans=1
 colorscheme solarized
 
 "NERDTREE
-map <silent> <C-n> :NERDTreeFocus<CR>
+map <silent> <C-n> :NERDTreeToggle<CR>
 
 "CLANG-FORMAT
 map <silent> <C-l> :ClangFormat<CR>
