@@ -3,7 +3,6 @@
 
 # But not these files...
 !.gitignore
-!.config/
 !.bashrc
 !.vimrc
 !.vim/autoload/*
@@ -20,3 +19,4 @@
 \.config/okularpartrc
 \.config/okularrc
 \.config/QtProject\.conf
+\.config/i3/config
