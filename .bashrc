@@ -123,7 +123,9 @@ fi
    #exec zsh
 #fi
 
+### BASH ###
 set -o vi
+stty -ixon
 
 ### FZF ###
 
@@ -153,7 +155,7 @@ alias home="cd /home/ben"
 alias root="cd /"
 alias c="cd /mnt/c"
 alias src="cd ~/src"
-alias msp="cd ~/src/flight_software"
+alias msp="tmux new -A -s msp-dev 'cd ~/src/flight_software && vim'"
 alias ll="ls -l"
 alias get="sudo apt-get install"
 alias unzipi="dtrx"
