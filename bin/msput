@@ -1,0 +1,75 @@
+#!/bin/bash
+
+FLATBOX_HOSTNAME="1.tcp.au.ngrok.io"
+PORT=20328
+USER=msp
+LOADTI_PATH="/opt/ti/ccsv8/ccs_base/scripting/examples/loadti/loadti.sh"
+CCXML_PATH="~/src/.msput_flight_software/targetConfigs/MSP432P401R.ccxml"
+LOG_PATH="~/src/.msput_flight_software/targetConfigs/loadti_log.xml"
+STDOUT_PATH="~/src/.msput_flight_software/targetConfigs/stdout.txt"
+OUT_PATH="~/src/.msput_flight_software/Tests\ MSP432E/MSP.out"
+LOAD_DIR="~/src/.msput_flight_software/"
+LOAD_PATH=$LOAD_DIR"MSP.out"
+TIMEOUT=600000
+CLEAN_TESTS="/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_msput -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration \"Tests MSP432E\" -ccs.clean"
+BUILD_TESTS="/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_msput -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration \"Tests MSP432E\""
+BUILD_SUCCESS="CCS headless build complete! 0 out of 1 projects have errors."
+WORKSPACE_PATH="~/workspace_v8"
+WORKSPACE_LOCK_PATH="~/workspace_v8/.metadata/.lock"
+# TODO(dingbenjamin): Offer option to delete the lock
+
+# Get flags
+build='false'
+clean='false'
+branch=''
+while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
+  -B | --build)
+    build='true'
+    ;;
+  -b | --branch)
+    shift; branch=$1
+    ;;
+  -c | --clean)
+    shift; clean='true'
+    ;;
+esac; shift; done
+if [[ "$1" == '--' ]]; then shift; fi
+
+if [ "$branch" != '' ]
+then
+	echo "Checking out branch $branch"
+
+	# TODO(dingbenjamin): Delete branch if exists already
+	RESULT_GIT=$(ssh $USER@$FLATBOX_HOSTNAME -q -p $PORT -oStrictHostKeyChecking=no "cd ~/src/.msput_flight_software && git checkout satellite && git fetch && git branch -D temp_msput && git checkout -b temp_msput origin/$branch")
+fi
+
+if [ "$clean" = "true" ]
+then
+	echo "Cleaning Tests MSP432E"
+
+	RESULT_CLEAN=$(ssh $USER@$FLATBOX_HOSTNAME -q -p $PORT -oStrictHostKeyChecking=no "$CLEAN_TESTS")
+fi
+
+if [ "$build" = "true" ] 
+then
+	echo "Building Tests MSP432E"
+
+	RESULT_BUILD=$(ssh $USER@$FLATBOX_HOSTNAME -q -p $PORT -oStrictHostKeyChecking=no "$BUILD_TESTS" | tail -1)
+
+	echo $RESULT_BUILD
+
+	if [ "$RESULT_BUILD" != $BUILD_SUCCESS ]
+	then
+		echo "Build failed, exiting"
+		exit 1
+	fi
+
+	echo "Build successful, proceeding with unit tests"
+fi
+
+echo "Starting unit tests"
+	
+ssh $USER@$FLATBOX_HOSTNAME -q -p $PORT -oStrictHostKeyChecking=no "cp $OUT_PATH $LOAD_DIR && $LOADTI_PATH -c $CCXML_PATH -x $LOG_PATH -s $STDOUT_PATH -t $TIMEOUT $LOAD_PATH"
+
+# TODO(dingbenjamin): grep for unit test completion
+notify-send "msput: Unit tests complete or timed out"
