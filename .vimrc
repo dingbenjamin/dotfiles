@@ -16,7 +16,7 @@ imap <C-l> <Esc>lwi
 imap <C-h> <Esc>hbi
 map <C-q> :q<Cr>
 map <C-s> :w<Cr>
-map <Leader>qf :q!<Cr>
+map <Leader>fq :q!<Cr>
 map <Leader>gst :Gstatus<Cr>
 map <Leader>gpu :Gpull<Cr>
 map <Leader>gps :Gpush<Cr>
@@ -99,8 +99,17 @@ nmap <C-/> gcc
 let g:ale_linters = {'cpp': ['cppcheck', 'cpplint']}
 
 "BUILD SYSTEM
-command Clean execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.workspace -ccs.configuration "zCoverity" -ccs.clean' 
-set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.workspace\ -ccs.configuration\ "zCoverity"
+set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ "zCoverity"
+
+command CleanOrbit execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration Orbit -ccs.clean' 
+command CleanTests execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration \"Tests MSP432E\" -ccs.clean' 
+command CleanZcoverity execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration zCoverity -ccs.clean'
+
+command Orbit execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"Orbit\"'
+command Tests execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"Tests MSP432E\"'
+command ZCoverity execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"zCoverity\"'
+command FakeMake execute 'set makeprg=/opt/ti'
+
 map <C-b> :Make<CR>
 autocmd QuickFixCmdPost * :copen
 
