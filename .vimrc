@@ -4,6 +4,7 @@ set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 set mouse=a
+set sidescroll=1
 
 "KEYBINDINGS
 nnoremap <Space> <Nop>
@@ -14,6 +15,12 @@ noremap <Leader>Y "+y
 noremap <Leader>P "+p
 imap <C-l> <Esc>lwi
 imap <C-h> <Esc>hbi
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <Leader>n :cn<Cr>
+nnoremap <Leader>p :cp<Cr>
 map <C-q> :q<Cr>
 map <C-s> :w<Cr>
 map <Leader>fq :q!<Cr>
@@ -51,7 +58,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'gnattishness/cscope_maps'
+Plug 'vim-utils/vim-cscope'
 
 call plug#end()
 
@@ -72,10 +79,10 @@ colorscheme solarized
 map <silent> <C-n> :NERDTreeToggle<CR>
 
 "CLANG-FORMAT
-nmap <silent> <C-l> :ClangFormat<CR>
+nmap <silent> <Leader>af :ClangFormat<CR>
 
 "CTRL-P
-let g:ctrlp_map = '<C-k>'
+" let g:ctrlp_map = '<C-k>'
 
 "VIM_MULTIPLE_CURSORS
 let g:multi_cursor_use_default_mapping=0
