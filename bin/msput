@@ -24,7 +24,7 @@ clean='false'
 branch=''
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -B | --build)
-    build='true'
+    shift; build='true'
     ;;
   -b | --branch)
     shift; branch=$1

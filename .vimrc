@@ -5,6 +5,7 @@ set shiftwidth=4
 set noexpandtab
 set mouse=a
 set sidescroll=1
+set clipboard=unnamedplus
 
 "KEYBINDINGS
 nnoremap <Space> <Nop>
@@ -19,24 +20,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <Leader>n :cn<Cr>
-nnoremap <Leader>p :cp<Cr>
 map <C-q> :q<Cr>
 map <C-s> :w<Cr>
 map <Leader>fq :q!<Cr>
-map <Leader>gst :Gstatus<Cr>
-map <Leader>gpu :Gpull<Cr>
-map <Leader>gps :Gpush<Cr>
-map <Leader>gpf :Gpush -f<Cr>
-map <Leader>grb :Grebase 
-map <Leader>ggr :Ggrep<Cr>
-map <Leader>gcm :Gcommit<Cr>
-map <Leader>gco :Git checkout  
-map <Leader>gam :Gcommit --amend<Cr>
-map <Leader>gwr :Gwrite<Cr>
-map <Leader>gre :Gread<Cr>
-map <Leader>gfe :Gfetch<Cr>
-map <Leader>gdi :Gdiff<Cr>
+map <Cr><Cr> o<Esc>
 
 "VIM-PLUG
 call plug#begin('~/.vim/plugged')
@@ -95,6 +82,9 @@ let g:multi_cursor_prev_key            = '<C-m>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
+"CTAGS
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 "VIM-GITGUTTER
 autocmd BufEnter * :GitGutterDisable
 nmap <C-g> :GitGutterToggle<CR>
@@ -102,10 +92,29 @@ nmap <C-g> :GitGutterToggle<CR>
 "VIM-COMMENTARY
 nmap <C-/> gcc
 
+"VIM-FUGITIVE
+set diffopt+=vertical
+map <Leader>gst :Gstatus<Cr>
+map <Leader>gpu :Gpull<Cr>
+map <Leader>gps :Gpush<Cr>
+map <Leader>gpf :Gpush -f<Cr>
+map <Leader>grb :Grebase 
+map <Leader>ggr :Ggrep<Cr>
+map <Leader>gcm :Gcommit<Cr>
+map <Leader>gco :Git checkout  
+map <Leader>gam :Gcommit --amend<Cr>
+map <Leader>gwr :Gwrite<Cr>
+map <Leader>gre :Gread<Cr>
+map <Leader>gfe :Gfetch<Cr>
+map <Leader>gdi :Gdiff<Cr>
+
 "ALE
 let g:ale_linters = {'cpp': ['cppcheck', 'cpplint']}
 
 "BUILD SYSTEM
+nnoremap <Leader>n :cn<Cr>
+nnoremap <Leader>p :cp<Cr>
+
 set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ "zCoverity"
 
 command CleanOrbit execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration Orbit -ccs.clean' 
