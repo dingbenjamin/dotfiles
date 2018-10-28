@@ -28,7 +28,6 @@ map <Cr><Cr> o<Esc>
 "VIM-PLUG
 call plug#begin('~/.vim/plugged')
 
-Plug 'kien/ctrlp.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdtree'
@@ -47,6 +46,7 @@ Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 
@@ -151,8 +151,27 @@ let g:ale_linters = {'cpp': ['cppcheck', 'cpplint']}
 "ULTISNIPS
 let g:UltiSnipsSnippetDirectories=["UltiSnips","CppSnips"]
 let g:UltiSnipsExpandTrigger="<S-Tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"FZF
+map <C-P> :FZF<Cr>
+let g:fzf_history_dir = '~./fzf-history'
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+  \ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 "MSP BUILD SYSTEM
 nnoremap <Leader>n :cn<Cr>
@@ -181,4 +200,3 @@ highlight clear LineNr
 highlight clear CursorLineNr
 highlight clear SignColumn
 highlight LineNr guibg=NONE
-highlight CursorLineNr guibg=NONE
