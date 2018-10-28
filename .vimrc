@@ -45,6 +45,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -77,7 +79,6 @@ let g:multi_cursor_next_key            = '<C-m>'
 let g:multi_cursor_prev_key            = '<C-m>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
-
 
 "CSCOPE
 "Chopped and pasted from http://cscope.sourceforge.net/cscope_maps.vim
@@ -146,6 +147,12 @@ map <Leader>gdi :Gdiff<Cr>
 
 "ALE
 let g:ale_linters = {'cpp': ['cppcheck', 'cpplint']}
+
+"ULTISNIPS
+let g:UltiSnipsSnippetDirectories=["UltiSnips","CppSnips"]
+let g:UltiSnipsExpandTrigger="<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "MSP BUILD SYSTEM
 nnoremap <Leader>n :cn<Cr>
