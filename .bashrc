@@ -166,6 +166,7 @@ alias reddit="rtv"
 alias youtube="mpsyt"
 alias email="mutt"
 alias weather="curl wttr.in"
+alias vimrc="vim ~/.vimrc"
 
 ### GIT ###
 
