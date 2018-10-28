@@ -117,6 +117,9 @@ nnoremap <Leader>p :cp<Cr>
 
 set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ "zCoverity"
 
+set errorformat=../%f\:%l:%c:\ %m
+set errorformat+=%f\:%l:%c:\ %m
+
 command CleanOrbit execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration Orbit -ccs.clean' 
 command CleanTests execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration \"Tests MSP432E\" -ccs.clean' 
 command CleanZcoverity execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8 -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration zCoverity -ccs.clean'
