@@ -45,7 +45,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-utils/vim-cscope'
 
 call plug#end()
 
@@ -68,9 +67,6 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 "CLANG-FORMAT
 nmap <silent> <Leader>af :ClangFormat<CR>
 
-"CTRL-P
-" let g:ctrlp_map = '<C-k>'
-
 "VIM_MULTIPLE_CURSORS
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_word_key      = '<C-m>'
@@ -81,6 +77,46 @@ let g:multi_cursor_next_key            = '<C-m>'
 let g:multi_cursor_prev_key            = '<C-m>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+
+"CSCOPE
+"Chopped and pasted from http://cscope.sourceforge.net/cscope_maps.vim
+"
+" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+" set cscopetag
+
+" check cscope for definition of a symbol before checking ctags: set to 1
+" if you want the reverse search order.
+set csto=0
+
+" add any cscope database in current directory
+if filereadable("cscope.out")
+	cs add cscope.out  
+" else add the database pointed to by environment variable 
+elseif $CSCOPE_DB != ""
+	cs add $CSCOPE_DB
+endif
+
+" show msg when any other cscope db added
+set cscopeverbose  
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+nmap <C-[>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-[>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-[>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-[>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-[>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-[>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-[>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+nmap <C-[>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 "CTAGS
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -111,7 +147,7 @@ map <Leader>gdi :Gdiff<Cr>
 "ALE
 let g:ale_linters = {'cpp': ['cppcheck', 'cpplint']}
 
-"BUILD SYSTEM
+"MSP BUILD SYSTEM
 nnoremap <Leader>n :cn<Cr>
 nnoremap <Leader>p :cp<Cr>
 
