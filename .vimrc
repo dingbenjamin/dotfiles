@@ -6,6 +6,9 @@ set noexpandtab
 set mouse=a
 set sidescroll=1
 set clipboard=unnamedplus
+set cursorline
+set foldmethod=syntax
+set wildmode=longest,list,full
 
 "KEYBINDINGS
 nnoremap <Space> <Nop>
@@ -20,6 +23,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <S-h> 4h
+nnoremap <S-j> 4j
+nnoremap <S-k> 4k
+nnoremap <S-l> 4l
 map <C-q> :q<Cr>
 map <C-s> :w<Cr>
 map <Leader>fq :q!<Cr>
@@ -156,7 +163,7 @@ let g:UltiSnipsExpandTrigger="<S-Tab>"
 
 "FZF
 map <C-P> :FZF<Cr>
-let g:fzf_history_dir = '~./fzf-history'
+let g:fzf_history_dir = '~/.fzf-history'
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =

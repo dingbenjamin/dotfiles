@@ -167,6 +167,7 @@ alias youtube="mpsyt"
 alias email="mutt"
 alias weather="curl wttr.in"
 alias vimrc="vim ~/.vimrc"
+alias pb="protoc --plugin=/usr/local/nanopb/generator-bin/protoc-gen-nanopb --nanopb_out=."
 
 ### GIT ###
 
