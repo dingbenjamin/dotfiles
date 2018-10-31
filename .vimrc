@@ -1,10 +1,4 @@
-" TODO(dingbenjamin): Ctrl-Backspace in insert mode
-" TODO(dingbenjamin): Windows style insert mode navigation
-" TODO(dingbenjamin): Jump from c to h file
-" TODO(dingbemjamin): Automatic folding only to first level
-" TODO(dingbenjamin): GOTO line to auto unfold
-
-"SETTINGS
+"MISC SETTINGS
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -13,32 +7,65 @@ set mouse=a
 set sidescroll=1
 set clipboard=unnamedplus
 set cursorline
-set foldmethod=syntax
-set foldnestmax=1
 set wildmode=longest,list,full
 set esckeys
+set hlsearch!
+set backspace=indent,eol,start
+
+"FOLDING
+set foldmethod=syntax
+set foldnestmax=1
+set foldopen+=jump
+set foldopen+=quickfix
+set foldopen+=search
+set foldopen+=tag
+set foldopen+=insert
+set foldopen+=undo
+set foldopen+=mark
 
 "KEYBINDINGS
 nnoremap <Space> <Nop>
 let mapleader = " "
+
 noremap <Leader>y "*y
 noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
+
+map <C-q> :q<Cr>
+map <C-s> :w<Cr>
+map <Leader>fq :q!<Cr>
+
 imap <C-l> <Esc>lei
 imap <C-h> <Esc>hbi
+
+nnoremap <Leader>hh :A<Cr>
+nnoremap <Leader>hx :AS<Cr>
+nnoremap <Leader>hv :AV<Cr>
+
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+map <Cr><Cr> o<Esc>
+
 nnoremap <S-h> 4h
 nnoremap <S-j> 4j
 nnoremap <S-k> 4k
 nnoremap <S-l> 4l
-map <C-q> :q<Cr>
-map <C-s> :w<Cr>
-map <Leader>fq :q!<Cr>
-map <Cr><Cr> o<Esc>
+
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
+
+let hlstate=0
+nnoremap <Leader>* :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<Cr>
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
 
 "VIM-PLUG
 call plug#begin('~/.vim/plugged')
@@ -62,6 +89,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'vim-scripts/a.vim'
 
 call plug#end()
 
