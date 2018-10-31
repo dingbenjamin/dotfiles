@@ -1,3 +1,9 @@
+" TODO(dingbenjamin): Ctrl-Backspace in insert mode
+" TODO(dingbenjamin): Windows style insert mode navigation
+" TODO(dingbenjamin): Jump from c to h file
+" TODO(dingbemjamin): Automatic folding only to first level
+" TODO(dingbenjamin): GOTO line to auto unfold
+
 "SETTINGS
 set tabstop=4
 set softtabstop=4
@@ -8,7 +14,9 @@ set sidescroll=1
 set clipboard=unnamedplus
 set cursorline
 set foldmethod=syntax
+set foldnestmax=1
 set wildmode=longest,list,full
+set esckeys
 
 "KEYBINDINGS
 nnoremap <Space> <Nop>
@@ -17,7 +25,7 @@ noremap <Leader>y "*y
 noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
-imap <C-l> <Esc>lwi
+imap <C-l> <Esc>lei
 imap <C-h> <Esc>hbi
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
