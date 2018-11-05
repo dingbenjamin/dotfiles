@@ -90,7 +90,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'dingbenjamin/a.vim'
-Plug 'uhdev/vim-latex-live-preview'
+Plug 'xuhdev/vim-latex-live-preview'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
