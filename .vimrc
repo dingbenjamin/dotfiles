@@ -90,6 +90,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'dingbenjamin/a.vim'
+Plug 'uhdev/vim-latex-live-preview'
 
 call plug#end()
 
@@ -217,15 +218,18 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+"VIM-LATEX-LIVE-PREVIEW
+autocmd Filetype tex setl updatetime=1
+
 "MSP BUILD SYSTEM
 nnoremap <Leader>n :cn<Cr>
 nnoremap <Leader>p :cp<Cr>
 
-set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ "zCoverity"
+au BufRead,Bufnewfile *.cpp,*.h set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ "zCoverity"
 
-set errorformat=../%f\:%l:%c:\ %m
-set errorformat+=%f\:%l:%c:\ %m
-set errorformat^=%-G%f:%l:\ warning:%m
+au BufRead,Bufnewfile *.cpp,*.h set errorformat=../%f\:%l:%c:\ %m
+au BufRead,Bufnewfile *.cpp,*.h set errorformat+=%f\:%l:%c:\ %m
+au BufRead,Bufnewfile *.cpp,*.h set errorformat^=%-G%f:%l:\ warning:%m
 
 command CleanOrbit execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8_vim -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration Orbit -ccs.clean' 
 command CleanTests execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8_vim -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration \"Tests MSP432E\" -ccs.clean' 
@@ -234,7 +238,6 @@ command CleanZcoverity execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~
 command Orbit execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"Orbit\"'
 command Tests execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"Tests MSP432E\"'
 command ZCoverity execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"zCoverity\"'
-command FakeMake execute 'set makeprg=/opt/ti'
 
 map <C-b> :Make<CR>
 autocmd QuickFixCmdPost * :copen
