@@ -11,3 +11,4 @@ wal -i "/home/ben/Pictures/Wallpapers/z1y2zRe.jpg"
 xset r rate 400 25
 xmodmap ~/.Xmodmap
 xmodmap -e "clear lock" #disable caps lock switch
+insync start
