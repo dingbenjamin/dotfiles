@@ -89,14 +89,10 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'vim-scripts/a.vim'
+Plug 'dingbenjamin/a.vim'
 
 call plug#end()
 
-"A.VIM
-" iunmap <Leader>ihn
-" iunmap <Leader>is
-" iunmap <Leader>ih
 
 "LIGHTLINE
 set noshowmode
