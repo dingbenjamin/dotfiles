@@ -57,6 +57,8 @@ nnoremap <S-l> 4l
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
 
+map # ^
+
 let hlstate=0
 nnoremap <Leader>* :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<Cr>
 if &term =~ '^screen'
