@@ -221,8 +221,20 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+"LATEX
+autocmd Filetype tex nmap <Leader>lc <F7>
+autocmd Filetype tex xmap <Leader>lc <F7>
+autocmd Filetype tex set cpt-=t
+
 "VIM-LATEX-LIVE-PREVIEW
-autocmd Filetype tex setl updatetime=1
+autocmd Filetype tex setl updatetime=0
+
+"VIMTEX
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
+let g:matchup_override_vimtex = 1
 
 "MSP BUILD SYSTEM
 nnoremap <Leader>n :cn<Cr>
@@ -242,7 +254,7 @@ command Orbit execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -da
 command Tests execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"Tests MSP432E\"'
 command ZCoverity execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"zCoverity\"'
 
-map <C-b> :Make<CR>
+nmap <C-b> :Make<CR>
 autocmd QuickFixCmdPost * :copen
 
 "LINE NUMBERS
