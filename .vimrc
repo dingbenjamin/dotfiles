@@ -94,6 +94,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'dingbenjamin/a.vim'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'lervag/vimtex'
+Plug 'matze/vim-tex-fold'
 
 call plug#end()
 
