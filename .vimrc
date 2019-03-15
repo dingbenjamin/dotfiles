@@ -11,6 +11,8 @@ set wildmode=longest,list,full
 set esckeys
 set hlsearch!
 set backspace=indent,eol,start
+syntax on
+filetype plugin indent on
 
 "FOLDING
 set foldmethod=syntax
@@ -96,6 +98,7 @@ Plug 'dingbenjamin/a.vim'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'lervag/vimtex'
 Plug 'matze/vim-tex-fold'
+Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
@@ -237,6 +240,15 @@ if empty(v:servername) && exists('*remote_startserver')
 endif
 
 let g:matchup_override_vimtex = 1
+
+"HASKELL-VIM
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 "MSP BUILD SYSTEM
 nnoremap <Leader>n :cn<Cr>
