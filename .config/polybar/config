@@ -4,10 +4,10 @@ bluebg = #7cd0d6
 urgbg = #fc6a6a
 
 [bar/main]
-monitor = eDP-1
-height = 25
-width = 1840
-offset-x = 40
+monitor = DisplayPort-0
+height = 30
+width = 3680
+offset-x = 80
 offset-y = 5
 
 background = #ECE0D7
@@ -23,7 +23,7 @@ module-margin-left = 2
 override-redirect = true
 wm-restack = i3
 
-font-0 = terminus:pixelsize=13;
+font-0 = inconsolata:pixelsize=13;
 font-1 = unifont:fontformat=truetype:size=11:antialias=false;0
 font-2 = Siji:size:12;1.5
 

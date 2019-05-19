@@ -25,7 +25,7 @@ set_from_resource $bg i3wm.color2 #000000
 bindsym Print --release exec snip
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "rofi -combi-modi ssh,drun,run -show combi -modi combi,ssh -lines 3 -eh 2 -width 100 -padding 800 -opacity '85' -bw 0 -terminal urxvt"
+bindsym $mod+d exec "rofi -combi-modi ssh,drun,run -show combi -modi combi,ssh -lines 3 -eh 2 -width 100 -padding 1024 -opacity '85' -bw 0 -terminal urxvt"
 
 # change focus
 bindsym $mod+h focus left
@@ -53,8 +53,6 @@ bindsym $mod+Shift+Right move right
 
  # split in horizontal orientation
 bindsym $mod+b split h
-
-# split in vertical orientation
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
@@ -179,7 +177,7 @@ mode "$mode_gaps_outer" {
 
 # class                 border  backgr. text indicator child_border
 client.focused          $fg	$bg     $fg  $bg       #8e3434
-client.focused_inactive $fg	$bg     $fg  $bg       $bg
+client.focused_inactive $fg		$bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
@@ -211,29 +209,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Screenshot
-
-bindsym $mod+p exec "import ~/Pictures/ss.png"
-
-# Media keys
-
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ &"
-
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master 5%- &"
-
-bindsym XF86AudioMute exec "amixer -q sset Master toggle &"
-
-bindsym XF86MonBrightnessUp exec "light -A 5 &"
-
-bindsym XF86MonBrightnessDown exec "light -U 5 &"
-
-bindsym Mod1+p exec "lock.sh"
-
-#redshift configured for melbourne
-#exec --no-startup-id "redshift -l -37.8:145.0"
-
 #mopidy
-exec --no-startup-id mopidy
 
 # xinitrc
 exec "sh .xinitrc"

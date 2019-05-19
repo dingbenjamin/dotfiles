@@ -9,7 +9,7 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! X settings
-Xcursor.size: 16 
+Xcursor.size: 16
 Xcursor.theme: OSX-ElCap
 
 ! Set the font

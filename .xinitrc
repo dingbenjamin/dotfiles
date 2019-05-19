@@ -7,7 +7,7 @@ checkredshift.sh &
 urxvtd -q -f &
 mopidy &
 launchbar &
-wal -i "/home/ben/Pictures/Wallpapers/z1y2zRe.jpg"
+wal -i "/home/ben/Pictures/Wallpapers/ocean2.jpg"
 xset r rate 400 25
 xmodmap ~/.Xmodmap
 xmodmap -e "clear lock" #disable caps lock switch
