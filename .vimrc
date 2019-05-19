@@ -250,23 +250,19 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
-"MSP BUILD SYSTEM
+"BEAMFORMER BUILD SYSTEM
 nnoremap <Leader>n :cn<Cr>
 nnoremap <Leader>p :cp<Cr>
 
-au BufRead,Bufnewfile *.cpp,*.h set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ "zCoverity"
+au BufRead,Bufnewfile *.cpp,*.h set makeprg=/opt/ti/ccs901/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v9_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ "zCoverity"
 
 au BufRead,Bufnewfile *.cpp,*.h set errorformat=../%f\:%l:%c:\ %m
 au BufRead,Bufnewfile *.cpp,*.h set errorformat+=%f\:%l:%c:\ %m
 au BufRead,Bufnewfile *.cpp,*.h set errorformat^=%-G%f:%l:\ warning:%m
 
-command CleanOrbit execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8_vim -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration Orbit -ccs.clean' 
-command CleanTests execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8_vim -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration \"Tests MSP432E\" -ccs.clean' 
-command CleanZcoverity execute '!/opt/ti/ccsv8/eclipse/eclipse -noSplash -data ~/workspace_v8_vim -application com.ti.ccstudio.apps.projectBuild -ccs.projects MSP -ccs.configuration zCoverity -ccs.clean'
+command Clean execute '!/opt/ti/ccs901/eclipse/eclipse -noSplash -data ~/workspace_v9_vim -application com.ti.ccstudio.apps.projectBuild -ccs.projects capstone_beamforming -ccs.configuration Debug -ccs.clean' 
 
-command Orbit execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"Orbit\"'
-command Tests execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"Tests MSP432E\"'
-command ZCoverity execute 'set makeprg=/opt/ti/ccsv8/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v8_vim\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ MSP\ -ccs.configuration\ \"zCoverity\"'
+command Build execute 'set makeprg=/opt/ti/ccs901/eclipse/eclipse\ -noSplash\ -data\ ~/workspace_v9\ -application\ com.ti.ccstudio.apps.projectBuild\ -ccs.projects\ capstone_beamforming\ -ccs.configuration\ \"Debug\"'
 
 nmap <C-b> :Make<CR>
 autocmd QuickFixCmdPost * :copen
