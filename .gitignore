@@ -6,6 +6,7 @@
 !.bashrc
 !.ideavimrc
 !.profile
+!.tmux.conf
 !.vimrc
 !.vim/autoload/*
 !.vim/CppSnips/*
