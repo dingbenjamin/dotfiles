@@ -1,2 +1,0 @@
-#!/bin/bash
-urxvt -e sudo openvpn --config ~/.config/openvpn/Dingnet.ovpn --dev tun 
