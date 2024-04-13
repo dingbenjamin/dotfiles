@@ -1,0 +1,8 @@
+[user]
+	name = Benjamin Ding
+	email = ben@dingbenjamin.com
+[core]
+	excludesFile = ~/.gitignore
+	editor = vim
+[protocol]
+	version = 2

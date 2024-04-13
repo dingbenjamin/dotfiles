@@ -12,6 +12,7 @@
     ~/.tmux.conf: .tmux.conf
     ~/.git.scmbrc: .git.scmbrc
     ~/.ideavimrc: .ideavimrc
+    ~/.gitconfig: .gitconfig
     ~/.bashrc: .bashrc
     ~/.zshrc: .zshrc
 
