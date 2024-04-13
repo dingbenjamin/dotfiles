@@ -1,0 +1,19 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- create:
+    - ~/src
+    - ~/bin
+- link:
+    ~/bin: bin
+    ~/.tmux.conf: .tmux.conf
+    ~/.git.scmbrc: .git.scmbrc
+    ~/.ideavimrc: .ideavimrc
+    ~/.bashrc: .bashrc
+    ~/.zshrc: .zshrc
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
