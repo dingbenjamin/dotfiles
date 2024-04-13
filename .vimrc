@@ -8,11 +8,12 @@ set sidescroll=1
 set clipboard=unnamed
 set cursorline
 set wildmode=longest,list,full
-set esckeys
 set hlsearch!
 set showcmd
 set backspace=indent,eol,start
 set autoread
+set previewheight=50
+set t_BE=
 syntax on
 filetype plugin indent on
 
@@ -62,12 +63,13 @@ noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
 
-nnoremap <Leader>q :q<Cr>
+nnoremap <C-q> :q<Cr>
 nnoremap <Leader>w :w<Cr>
-nnoremap <Leader>fq :q!<Cr>
+nnoremap <Leader>q :q!<Cr>
 
-nnoremap <Leader>vs :vsplit<Cr>
-nnoremap <Leader>hs :split<Cr>
+nnoremap <Leader>sv :vsplit<Cr>
+nnoremap <Leader>sh :split<Cr>
+nnoremap <Leader>sr :WinResizerStartResize<Cr>
 
 imap <C-l> <Esc>lei
 imap <C-h> <Esc>hbi
@@ -92,10 +94,14 @@ noremap! <C-h> <C-w>
 
 nnoremap <Leader>hl :set hlsearch! hlsearch?<Cr>
 
-nnoremap <Leader>t gt
-nnoremap <Leader><S-t> gT
+vnoremap <Leader>tr y:let @/ = '\V' . escape(@", '/\')<CR>:%s///g<Left><Left>
+
+inoremap <C-c> <Esc>l
 
 map # ^
+
+"Don't overwrite default register when pasting over in visual mode
+xnoremap p pgvy 
 
 let hlstate=0
 nnoremap <Leader>* :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<Cr>
@@ -144,8 +150,9 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'mhinz/vim-grepper'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'kshenoy/vim-signature'
-Plug 'lyuts/vim-rtags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'simeji/winresizer'
+Plug 'kmARC/fugitive-gerrit.vim'
 
 call plug#end()
 
@@ -169,7 +176,8 @@ function! LightlineFilename()
 endfunction
 
 "NERDTREE
-map <silent> <C-n> :NERDTreeToggle<CR>
+map <silent> <C-n> :NERDTreeFind<CR>
+:let g:NERDTreeWinSize=60
 
 "VIM_MULTIPLE_CURSORS
 let g:multi_cursor_use_default_mapping=0
@@ -188,21 +196,27 @@ nmap <C-g> :GitGutterToggle<CR>
 
 "VIM-COMMENTARY
 nmap <Leader>/ gcc
+augroup commentary
+    autocmd!
+    autocmd FileType cpp,javascript setlocal commentstring=//\ %s
+augroup END
+
 
 "VIM-FUGITIVE
-map <Leader>gst :Gstatus<Cr>
-map <Leader>gpu :Gpull<Cr>
-map <Leader>gps :Gpush<Cr>
-map <Leader>gpf :Gpush -f<Cr>
-map <Leader>grb :Grebase 
-map <Leader>ggr :Ggrep<Cr>
-map <Leader>gcm :Gcommit<Cr>
+map <Leader>gb :Git blame<Cr>
+map <Leader>gst :Git status<Cr>
+map <Leader>gpu :Git pull<Cr>
+map <Leader>gps :Git push<Cr>
+map <Leader>gpf :Git push -f<Cr>
+map <Leader>grb :Git rebase 
+map <Leader>ggr :Git grep<Cr>
+map <Leader>gcm :Git commit<Cr>
 map <Leader>gco :Git checkout  
-map <Leader>gam :Gcommit --amend<Cr>
-map <Leader>gwr :Gwrite<Cr>
-map <Leader>gre :Gread<Cr>
-map <Leader>gfe :Gfetch<Cr>
-map <Leader>gdi :Gdiff<Cr>
+map <Leader>gam :Git commit --amend<Cr>
+map <Leader>gwr :Git write<Cr>
+map <Leader>gre :Git read<Cr>
+map <Leader>gfe :Git fetch<Cr>
+map <Leader>gdi :Git diff<Cr>
 
 "FZF
 
@@ -222,13 +236,15 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 command! -nargs=* -bang RB call RipgrepFzfBazelOut(<q-args>, <bang>0)
 
-map <Leader>ff :GFiles<Cr>
+map <Leader>ff :Files<Cr>
 map <Leader>fi :RG<Cr>
 map <Leader>fc :Rg ^class\|^struct<Cr>
 map <Leader>fu :Rg ^using<Cr>
 map <Leader>fg :RB<Cr>
 map <Leader>fh :History<Cr>
 map <Leader>fb :Buffers<Cr>
+map <Leader>fe :History<CR>
+map <Leader>fs :<C-U>CocList -I symbols<CR>
 vnoremap <silent><leader>ff <Esc>:FZF -q <C-R>=<SID>getVisualSelection()<CR><CR>
 vnoremap <silent><leader>fi <Esc>:Rg <C-R>=<SID>getVisualSelection()<CR><CR>
 vnoremap <silent><leader>fh <Esc>:History <C-R>=<SID>getVisualSelection()<CR><CR>
@@ -284,20 +300,9 @@ function! BazelDir()
   return join(["//", expand('%'), "/..."], "")
 endfunction
 
-set makeprg=rrrb
 
-command BuildRemote set makeprg=rrrb
-command BuildLocal set makeprg=bazel
-
-command TestForeground execute "Make test" BazelDir()
-command BuildForeground execute "Make build" BazelDir()
-command TestBackground execute "Make! test" BazelDir()
-command BuildBackground execute "Make! build" BazelDir()
-
-nnoremap <Leader>bbf BuildForeground
-nnoremap <Leader>btf TestForeground
-nnoremap <Leader>bbb BuildBackground
-nnoremap <Leader>bbt TestBackground
+nnoremap <Leader>bb :Dispatch cd %:p:h && bazel build ...<CR>
+nnoremap <Leader>bt :Dispatch cd %:p:h && bazel test ...<CR>
 
 "LINE NUMBERS
 set number relativenumber
@@ -383,8 +388,8 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" Highlight the symbol and its references when holding the cursor. (Disabled)
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -400,6 +405,8 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+au FileType gitcommit setlocal tw=72
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -449,8 +456,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Show all diagnostics. (Disabled)
+" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
@@ -465,3 +472,5 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+unmap <Leader>s
