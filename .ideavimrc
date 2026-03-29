@@ -52,7 +52,7 @@ map <Cr><Cr> o<Esc>
 nnoremap <S-h> 4h
 nnoremap <S-j> 4j
 nnoremap <S-k> 4k
-nnoremap <S-l> 4l
+nnoremap <S-l> 4lhw
 
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>

@@ -14,6 +14,8 @@ set backspace=indent,eol,start
 set autoread
 set previewheight=50
 set t_BE=
+set maxmem=105025842600
+set maxmemtot=105025842600
 syntax on
 filetype plugin indent on
 
@@ -150,9 +152,8 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'mhinz/vim-grepper'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'kshenoy/vim-signature'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'simeji/winresizer'
-Plug 'kmARC/fugitive-gerrit.vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 

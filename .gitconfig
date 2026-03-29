@@ -2,7 +2,14 @@
 	name = Benjamin Ding
 	email = ben@dingbenjamin.com
 [core]
-	excludesFile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 	editor = vim
+	preloadIndex = true
+	fscache = true
 [protocol]
 	version = 2
+[pack]
+	useBitmaps = true
+	writeBitmaps = true
+[gc]
+	writeBitmaps = true

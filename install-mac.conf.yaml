@@ -1,0 +1,22 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- create:
+    - ~/src
+- link:
+    ~/.tmux.conf: .tmux.conf
+    ~/.git.scmbrc: .git.scmbrc
+    ~/.ideavimrc: .ideavimrc
+    ~/.gitconfig: .gitconfig
+    ~/.zshrc: .zshrc
+    ~/.vimrc: .vimrc
+    ~/.gitignore_global: .gitignore_global
+    "~/Library/Application Support/Code/User/settings.json": mac/vscode/settings.json
+    ~/.vscodevimrc: mac/vscode/.vscodevimrc
+    ~/.aerospace.toml: mac/.aerospace.toml
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

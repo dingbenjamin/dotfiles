@@ -1,0 +1,18 @@
+imap <C-l> <Esc>lei
+imap <C-h> <Esc>hbi
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+map <Cr><Cr> o<Esc>
+
+nnoremap <S-h> 4h
+nnoremap <S-j> 4j
+nnoremap <S-k> 4k
+nnoremap <S-l> 4l
+
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
+
+map # ^

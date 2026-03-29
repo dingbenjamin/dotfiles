@@ -63,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -78,6 +78,18 @@ alias vz='vim ~/.zshrc'
 alias vb='vim ~/.bashrc'
 alias sb='source ~/.bashrc'
 alias sz='source ~/.zshrc'
+
+####################
+# Pyenv
+####################
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Load pyenv into the shell
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 ####################
 # Java
@@ -96,7 +108,9 @@ jdk() {
 # Scm Breeze
 #####################
 
-[ -s "/Users/bding/.scm_breeze/scm_breeze.sh" ] && source "/Users/bding/.scm_breeze/scm_breeze.sh"
+if [[ $- == *i* ]]; then
+    [ -s "/Users/bding/.scm_breeze/scm_breeze.sh" ] && source "/Users/bding/.scm_breeze/scm_breeze.sh"
+fi
 
 #####################
 # fzf functions
