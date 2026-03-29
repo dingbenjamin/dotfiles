@@ -79,32 +79,6 @@ alias vb='vim ~/.bashrc'
 alias sb='source ~/.bashrc'
 alias sz='source ~/.zshrc'
 
-####################
-# Pyenv
-####################
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-# Load pyenv into the shell
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-####################
-# Java
-####################
-
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-jdk() {
-        version=$1
-        export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
-        java -version
-}
-
-#####################
 # Scm Breeze
 #####################
 
@@ -155,3 +129,4 @@ function delete-branches() {
 #####################
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="$HOME/.local/bin:$PATH"
